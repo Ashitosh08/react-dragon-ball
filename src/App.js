@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// // import pages
+import Home from './pages/Home'
+import Watchlist from './pages/Watchlist'
+
+import Error from './pages/Error'
+// import components
+import Navbar from './components/Navbar'
+import SingleAnime from './pages/SingleAnime'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='watchlist' element={<Watchlist />} />
+
+        <Route path='anime/:id' element={<SingleAnime />} />
+        <Route path='*' element={<Error />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
